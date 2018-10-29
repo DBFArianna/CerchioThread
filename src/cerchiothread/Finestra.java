@@ -24,13 +24,28 @@ public class Finestra extends JFrame {
 //        setta dimensioni
         setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGTH));
 //        setta layout
-        setLayout(new GridLayout(1, 1, 3, 3));
-//        crea oggetto cerchio
-        Cerchio c = new Cerchio();
-//        faccio partire il Thread
-        c.getThread().start();
-//        aggiunge cerchio al Frame
-        add(c);
+        setLayout(new GridLayout(2, 2, 3, 3));
+        /*faccio partire processi in parallelo
+          in questo caso non serve il join
+          perchè sono in conflitto solo per la CPU*/
+//         crea oggetti cerchio
+        Cerchio c1 = new Cerchio();
+        Cerchio c2 = new Cerchio();
+        Cerchio c3 = new Cerchio();
+        Cerchio c4 = new Cerchio();
+
+//        fa partire il Thread
+        c1.getThread().start();
+        c2.getThread().start();
+        c3.getThread().start();
+        c4.getThread().start();
+
+//        aggiunge cerchi al Frame
+        add(c1);
+        add(c2);
+        add(c3);
+        add(c4);
+
 //        aggiunge le componenti grafiche
         pack();
 //        setta visibilità a true

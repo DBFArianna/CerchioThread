@@ -2,8 +2,6 @@ package cerchiothread;
 
 import java.awt.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 //classe concreta deriva da JPanel implementa Runnable
@@ -14,14 +12,14 @@ public class Cerchio extends JPanel implements Runnable {
     public final static int PANEL_WIDTH = 500;
     public final static int PANEL_HEIGHT = 400;
 //    costante staica int misura ovale
-    public final static int OVAL_SIZE = 100;
+    public final static int OVAL_SIZE = 30;
 
 //    varibili int coordinate e spostamento
     int x = 0, y = 0, dx = 2, dy = 2;
 //    variabile random
     Random ran = new Random();
 //    oggetto Thread che crea un oggetto Cerchio
-    Thread animator = new Thread(this);
+    Thread animator;
 
 //    GETTERS
     public Thread getThread() {
@@ -37,12 +35,14 @@ public class Cerchio extends JPanel implements Runnable {
 //        mette un numero random in x e y
         x = ran.nextInt(PANEL_WIDTH - OVAL_SIZE);
         y = ran.nextInt(PANEL_HEIGHT - OVAL_SIZE);
+//        inizializza animator come new Thread
+        animator = new Thread(this);
     }
 
     /**
      * override metodo paintComonent di JPanel
      *
-     * @param g compente grafica
+     * @param g componente grafica
      */
     @Override
     public void paintComponent(Graphics g) {
